@@ -1,7 +1,3 @@
-Ah, got you! You want a full README.md style that’s clean, organized, and ready for GitHub, with sections, instructions, and features—like a proper project README. Here's a polished version:
-
----
-
 # PlayerVerse
 
 PlayerVerse is a Django-based social feed web application where users (profiles) can create posts with text and images. Each profile contains detailed information including name, nationality, age, rank/profession, occupation, and favorite color. Posts are displayed in the feed in the order: username → text → image. Users can click on a username to view that profile along with all posts made by them. A search bar allows searching for posts or profiles easily.
