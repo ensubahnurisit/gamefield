@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<header>
+    <h1>Search Results for "{{ query }}"</h1>
+    <form method="get" action="{% url 'search' %}" class="search-bar">
+        <input type="text" name="q" placeholder="Search posts or profiles" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+</header>
+
+<main class="feed">
+    {% if profiles %}
+        <h2>Profiles</h2>
+        {% for profile in profiles %}
+        <div class="profile-result">
+            <a href="{% url 'profile' profile.pk %}">
+                <img src="{% static profile.image %}" alt="Profile image" class="profile-avatar-small">
+                {{ profile.name }}
+            </a>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if posts %}
+        <h2>Posts</h2>
+        {% for post in posts %}
+        <div class="post">
+            <p class="post-text">{{ post.content|truncatechars:150 }}</p>
+            <img src="{% static post.image %}" alt="Post image" class="post-image">
+            <p class="post-author">By: <a href="{% url 'profile' post.profile.pk %}">{{ post.profile.name }}</a></p>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if not posts and not profiles %}
+    <p>No results found for "{{ query }}"</p>
+    {% endif %}
+</main>
+</body>
+</html>
